@@ -61,10 +61,10 @@ const Wallet = () => {
             className="flex-1 flex justify-center items-center"
           >
             <Image
-              src="/placeholder.svg?height=300&width=300"
+              src="/image/chill.png"
               alt="Cryptocurrency Illustration"
-              width={300}
-              height={300}
+              width={900}
+              height={900}
               className="rounded-lg shadow-lg"
             />
           </motion.div>
