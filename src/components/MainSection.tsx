@@ -3,6 +3,7 @@
 import { Button } from "./ui/button";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 const Wallet = () => {
   return (
@@ -40,18 +41,22 @@ const Wallet = () => {
               transition={{ delay: 0.6, duration: 0.8 }}
               className="flex gap-4 pt-4"
             >
-              <Button
-                size="lg"
-                className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105"
-              >
-                Solana
-              </Button>
-              <Button
-                size="lg"
-                className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105"
-              >
-                Ethereum
-              </Button>
+              <Link href={"/dashboard"}>
+                <Button
+                  size="lg"
+                  className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105"
+                >
+                  Solana
+                </Button>
+              </Link>
+              <Link href={"/dashboard"}>
+                <Button
+                  size="lg"
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105"
+                >
+                  Ethereum
+                </Button>
+              </Link>
             </motion.div>
           </div>
           <motion.div
