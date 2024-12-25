@@ -21,7 +21,6 @@ export function WalletCard({ index, ...wallet }: WalletCardProps) {
       <MotionCard
         delay={index * 0.1}
         className="cursor-pointer hover:scale-105 transition-transform"
-        onClick={() => setShowDetails(true)}
       >
         <CardHeader className="space-y-1">
           <div className="flex items-center justify-between">
@@ -58,11 +57,11 @@ export function WalletCard({ index, ...wallet }: WalletCardProps) {
         </CardContent>
       </MotionCard>
 
-      <WalletDetailsDialog
+      {/* <WalletDetailsDialog
         wallet={wallet}
         open={showDetails}
         onOpenChange={setShowDetails}
-      />
+      /> */}
     </>
   );
 }

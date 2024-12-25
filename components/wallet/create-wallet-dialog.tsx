@@ -1,30 +1,46 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Loader2, Plus } from 'lucide-react';
-import { createNewWallet } from '@/lib/utils/wallet';
+import { useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Loader2, Plus } from "lucide-react";
+import { createNewWallet } from "@/lib/utils/wallet";
 
-export function CreateWalletDialog({ onWalletCreate }: { onWalletCreate: (wallet: any) => void }) {
+export function CreateWalletDialog({
+  onWalletCreate,
+}: {
+  onWalletCreate: (wallet: any) => void;
+}) {
   const [loading, setLoading] = useState(false);
-  const [selectedChain, setSelectedChain] = useState<string>('');
-  const [name, setName] = useState('');
+  const [selectedChain, setSelectedChain] = useState<string>("");
+  const [name, setName] = useState("");
   const [open, setOpen] = useState(false);
 
   const handleCreateWallet = async () => {
     if (!selectedChain || !name.trim()) return;
-    
+
     setLoading(true);
     setTimeout(() => {
       const wallet = createNewWallet(selectedChain, name.trim());
       onWalletCreate(wallet);
       setLoading(false);
-      setSelectedChain('');
-      setName('');
+      setSelectedChain("");
+      setName("");
       setOpen(false);
     }, 1500);
   };
@@ -65,7 +81,7 @@ export function CreateWalletDialog({ onWalletCreate }: { onWalletCreate: (wallet
               </Select>
             </div>
           </div>
-          <Button 
+          <Button
             className="w-full"
             onClick={handleCreateWallet}
             disabled={!selectedChain || !name.trim() || loading}
