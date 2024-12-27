@@ -1,19 +1,25 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Loader2 } from 'lucide-react';
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Loader2 } from "lucide-react";
 
 interface CreateWalletFormProps {
   onCreateWallet: (name: string, chain: string) => void;
 }
 
 export function CreateWalletForm({ onCreateWallet }: CreateWalletFormProps) {
-  const [name, setName] = useState('');
-  const [chain, setChain] = useState('');
+  const [name, setName] = useState("");
+  const [chain, setChain] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -23,8 +29,8 @@ export function CreateWalletForm({ onCreateWallet }: CreateWalletFormProps) {
     setLoading(true);
     try {
       onCreateWallet(name, chain);
-      setName('');
-      setChain('');
+      setName("");
+      setChain("");
     } finally {
       setLoading(false);
     }
@@ -56,7 +62,11 @@ export function CreateWalletForm({ onCreateWallet }: CreateWalletFormProps) {
         </Select>
       </div>
 
-      <Button type="submit" className="w-full" disabled={loading || !name || !chain}>
+      <Button
+        type="submit"
+        className="w-full"
+        disabled={loading || !name || !chain}
+      >
         {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
         Create Wallet
       </Button>

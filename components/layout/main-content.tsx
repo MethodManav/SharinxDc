@@ -9,9 +9,14 @@ import { CreateWalletCard } from "@/components/wallet/create-wallet-card";
 interface MainContentProps {
   wallets: any[];
   onCreateWallet: (name: string, chain: string) => void;
+  phrase: string;
 }
 
-export function MainContent({ wallets, onCreateWallet }: MainContentProps) {
+export function MainContent({
+  wallets,
+  onCreateWallet,
+  phrase,
+}: MainContentProps) {
   return (
     <motion.div
       className="flex-1"
@@ -30,7 +35,7 @@ export function MainContent({ wallets, onCreateWallet }: MainContentProps) {
           {wallets.length > 0 ? (
             <div className="grid gap-6 md:grid-cols-2">
               {wallets.map((wallet, index) => (
-                <WalletCard key={wallet.address} {...wallet} index={index} />
+                <WalletCard key={wallet.publicKey} {...wallet} index={index} />
               ))}
             </div>
           ) : (
@@ -45,7 +50,7 @@ export function MainContent({ wallets, onCreateWallet }: MainContentProps) {
         </TabsContent>
 
         <TabsContent value="seed">
-          <SeedPhraseCard />
+          <SeedPhraseCard phrase={phrase} />
         </TabsContent>
       </Tabs>
     </motion.div>

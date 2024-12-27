@@ -1,7 +1,13 @@
-'use client';
+"use client";
 
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { CreateWalletForm } from '@/components/seed-phrase/create-wallet-form';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
+import { CreateWalletForm } from "@/components/seed-phrase/create-wallet-form";
 
 interface CreateWalletCardProps {
   onCreateWallet: (name: string, chain: string) => void;

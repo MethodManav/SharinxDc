@@ -1,19 +1,22 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { WalletCard } from "@/components/wallet/wallet-card";
+import { useEffect, useState } from "react";
 import { Navbar } from "@/components/layout/navbar";
 import { MainContent } from "@/components/layout/main-content";
 import { Sidebar } from "@/components/layout/sidebar";
 import { createNewWallet } from "@/lib/utils/wallet";
+import { generateSeedPhrase } from "@/lib/utils/crypto";
 
 export default function Home() {
   const [wallets, setWallets] = useState<any[]>([]);
   const [filter, setFilter] = useState<string>("all");
+  const [seedPhrase, setSeedPhrase] = useState("");
+  useEffect(() => {
+    setSeedPhrase(generateSeedPhrase);
+  }, []);
 
   const handleWalletCreate = (name: string, chain: string) => {
-    const newWallet = createNewWallet(chain, name);
+    const newWallet = createNewWallet(chain, name, seedPhrase);
     setWallets([...wallets, newWallet]);
   };
 
@@ -23,11 +26,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
-      <Navbar
-        onWalletCreate={function (wallet: any): void {
-          throw new Error("Function not implemented.");
-        }}
-      />
+      <Navbar />
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
           <Sidebar
@@ -37,6 +36,7 @@ export default function Home() {
           />
           <MainContent
             wallets={filteredWallets}
+            phrase={seedPhrase}
             onCreateWallet={handleWalletCreate}
           />
         </div>

@@ -1,15 +1,9 @@
 "use client";
-
 import { motion } from "framer-motion";
-import { CreateWalletDialog } from "@/components/wallet/create-wallet-dialog";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Wallet } from "lucide-react";
 
-interface NavbarProps {
-  onWalletCreate: (wallet: any) => void;
-}
-
-export function Navbar({ onWalletCreate }: NavbarProps) {
+export function Navbar() {
   return (
     <motion.nav
       className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
@@ -26,7 +20,7 @@ export function Navbar({ onWalletCreate }: NavbarProps) {
         >
           <Wallet className="h-8 w-8 text-primary" />
           <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-            SharinXDc
+            SharinXDC
           </h1>
         </motion.div>
 
