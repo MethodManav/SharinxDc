@@ -8,8 +8,15 @@ export interface Wallet {
   address: string;
   privateKey: string;
   publicKey: string;
+  seedPhrase: string;
   balance: number;
   created: string;
+}
+
+let currentSeedPhrase = '';
+
+export function setCurrentSeedPhrase(phrase: string) {
+  currentSeedPhrase = phrase;
 }
 
 export function createNewWallet(chain: string, name: string): Wallet {
@@ -25,6 +32,7 @@ export function createNewWallet(chain: string, name: string): Wallet {
     address,
     privateKey,
     publicKey,
+    seedPhrase: currentSeedPhrase,
     balance: Math.random() * 10,
     created: new Date().toISOString(),
   };

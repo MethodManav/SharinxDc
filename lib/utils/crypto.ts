@@ -10,3 +10,15 @@ export function generateKeyPair() {
 
   return { privateKey, publicKey };
 }
+
+const wordList = [
+  "abandon", "ability", "able", "about", "above", "absent", "absorb", "abstract",
+  "absurd", "abuse", "access", "accident", "account", "accuse", "achieve", "acid"
+  // ... (in a real implementation, this would be the full BIP39 word list)
+];
+
+export function generateSeedPhrase(): string {
+  return Array.from({ length: 12 }, () => 
+    wordList[Math.floor(Math.random() * wordList.length)]
+  ).join(' ');
+}

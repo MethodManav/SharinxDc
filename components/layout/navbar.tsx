@@ -32,7 +32,6 @@ export function Navbar({ onWalletCreate }: NavbarProps) {
 
         {/* Action Buttons */}
         <div className="flex items-center gap-6">
-          <CreateWalletDialog onWalletCreate={onWalletCreate} />
           <ThemeToggle />
         </div>
       </div>

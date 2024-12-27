@@ -1,30 +1,26 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from '@/components/ui/card';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Loader2 } from "lucide-react";
+} from '@/components/ui/select';
+import { Loader2 } from 'lucide-react';
 
-export function CreateWallet({
-  onWalletCreate,
-}: {
-  onWalletCreate: (wallet: any) => void;
-}) {
+export function CreateWallet({ onWalletCreate }: { onWalletCreate: (wallet: any) => void }) {
   const [loading, setLoading] = useState(false);
-  const [selectedChain, setSelectedChain] = useState<string>("");
+  const [selectedChain, setSelectedChain] = useState<string>('');
 
   const handleCreateWallet = async () => {
     setLoading(true);
@@ -32,15 +28,14 @@ export function CreateWallet({
     setTimeout(() => {
       const wallet = {
         chain: selectedChain,
-        address:
-          selectedChain === "ETH"
-            ? "0x" + Math.random().toString(16).slice(2, 42)
-            : Math.random().toString(36).slice(2, 44),
+        address: selectedChain === 'ETH' 
+          ? '0x' + Math.random().toString(16).slice(2, 42)
+          : Math.random().toString(36).slice(2, 44),
         balance: 0,
       };
       onWalletCreate(wallet);
       setLoading(false);
-      setSelectedChain("");
+      setSelectedChain('');
     }, 1500);
   };
 
@@ -62,7 +57,7 @@ export function CreateWallet({
             <SelectItem value="SOL">Solana</SelectItem>
           </SelectContent>
         </Select>
-        <Button
+        <Button 
           className="w-full"
           onClick={handleCreateWallet}
           disabled={!selectedChain || loading}
