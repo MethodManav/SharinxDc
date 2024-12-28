@@ -2,7 +2,7 @@
 import { mnemonicToSeedSync } from "bip39";
 import { derivePath } from "ed25519-hd-key";
 import { Keypair } from "@solana/web3.js";
-import { HDNodeWallet } from "ethers";
+import { HDNodeWallet, Wallet as EthWallet } from "ethers";
 import nacl from "tweetnacl";
 
 export interface Wallet {
@@ -62,12 +62,14 @@ export function ethKeyPair(phrase: string): {
   const path = `m/44'/60'/${counter}'/0'`;
   try {
     const seed = mnemonicToSeedSync(phrase);
-    const seedUint8Array = new Uint8Array(seed);
+    const seedUint8Array = new Uint8Array(seed); //convert the string to buffer
     const hdNode = HDNodeWallet.fromSeed(seedUint8Array);
     const secretKey = hdNode.derivePath(path);
+    const privateKey = secretKey.privateKey;
+    const wallet = new EthWallet(privateKey);
     counter++;
     return {
-      publicKey: secretKey.publicKey,
+      publicKey: wallet.address,
       privateKey: secretKey.privateKey,
     };
   } catch (error: any) {
