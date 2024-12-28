@@ -6,11 +6,13 @@ import { MainContent } from "@/components/layout/main-content";
 import { Sidebar } from "@/components/layout/sidebar";
 import { createNewWallet } from "@/lib/utils/wallet";
 import { generateSeedPhrase } from "@/lib/utils/crypto";
+import { useToast } from "@/hooks/use-toast";
 
 export default function Home() {
   const [wallets, setWallets] = useState<any[]>([]);
   const [filter, setFilter] = useState<string>("all");
   const [seedPhrase, setSeedPhrase] = useState("");
+  const { toast } = useToast();
   useEffect(() => {
     setSeedPhrase(generateSeedPhrase);
   }, []);
@@ -18,6 +20,10 @@ export default function Home() {
   const handleWalletCreate = (name: string, chain: string) => {
     const newWallet = createNewWallet(chain, name, seedPhrase);
     setWallets([...wallets, newWallet]);
+    toast({
+      title: "Wallet Created",
+      description: `Your ${chain} wallet "${name}" has been created successfully.`,
+    });
   };
 
   const filteredWallets = wallets.filter((wallet) =>
